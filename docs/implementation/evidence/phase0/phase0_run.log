@@ -1,0 +1,11 @@
+[1/4] manifest valid: 13 shots, narration 85606 ms
+[2/4] cloud-free render OK: jonah_phase0_local_only.mp4 in 77.336s
+[3/4] MOCK provider flow OK (no network, no real spend): job job-6b477d1b1a
+[4/4] render with mock clip OK: jonah_phase0_with_mock_clip.mp4 in 82.459s
+preview: C:\Users\USER\Documents\WORK\story-motion\out\preview\preview.html
+  jonah_phase0_local_only.mp4  sha256=5a1d695d1f1ea057757c9b70cd84e14af750eda7d193c7747afcf064ed71d805
+  jonah_phase0_with_mock_clip.mp4  sha256=1caf0db4aa49cdc3e4bb30895003c53c41c30625d8b552b5d526b0ca96c58a1a
+
+real	3m5.805s
+user	0m0.000s
+sys	0m0.015s

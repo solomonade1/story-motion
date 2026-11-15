@@ -1,0 +1,23 @@
+{
+  "provider": "mock-video",
+  "MOCK": true,
+  "shot": "shot-07a",
+  "approvalSimulatedByHarness": true,
+  "capabilities": {
+    "model": "fake-i2v-v0 (MOCK, not a real model)",
+    "pricingVerified": false
+  },
+  "quote": {
+    "usd(MOCK, not a real price)": "0.250000",
+    "billableMs": 5000,
+    "pricingConfig": "mock-pricing-v0"
+  },
+  "job": {
+    "id": "job-6b477d1b1a",
+    "claimedSha256": "6fd13a80b630b09ca408834289292ece57ed5b444b7bbd2a76ffab127523606e",
+    "verifiedSha256": "6fd13a80b630b09ca408834289292ece57ed5b444b7bbd2a76ffab127523606e",
+    "durationMs": 5000
+  },
+  "mockChargesMicroUsd": 250000,
+  "submitCalls": 1
+}

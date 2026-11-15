@@ -1,0 +1,71 @@
+name: Release (Windows desktop bundle)
+
+on:
+  push:
+    tags: ["v*"]          # v0.1.0 -> builds and publishes a GitHub Release
+  workflow_dispatch:      # manual run: builds the zip as a downloadable workflow artifact only
+    inputs:
+      version:
+        description: "Version label for a manual build (e.g. 0.1.0-test)"
+        default: "0.0.0-dev"
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12.10" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm, cache-dependency-path: apps/desktop/package-lock.json }
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m ruff check .
+      - run: python -m pytest -q -m "not ffmpeg"   # media-render tests need FFmpeg; the bundle smoke test below covers it
+      - working-directory: apps/desktop
+        run: |
+          npm ci
+          npm run typecheck
+          npm run lint
+          npm test
+
+  bundle:
+    needs: checks
+    runs-on: windows-latest
+    permissions:
+      contents: write     # only to attach files to a Release on tag builds
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12.10" }   # must equal -PythonVersion in scripts/build_release.ps1
+      - uses: actions/setup-node@v4
+        with: { node-version: "22", cache: npm, cache-dependency-path: apps/desktop/package-lock.json }
+      - name: Build the UI
+        working-directory: apps/desktop
+        run: |
+          npm ci
+          npm run build
+      - name: Work out the version
+        id: v
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF_TYPE -eq "tag") { $ver = $env:GITHUB_REF_NAME.TrimStart("v") } else { $ver = "${{ inputs.version }}" }
+          "version=$ver" >> $env:GITHUB_OUTPUT
+      - name: Assemble, smoke-test and zip the bundle
+        shell: pwsh
+        run: ./scripts/build_release.ps1 -Version "${{ steps.v.outputs.version }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: StoryMotion-Studio-${{ steps.v.outputs.version }}-win64
+          path: |
+            dist-release/*.zip
+            dist-release/*.sha256
+      - name: Publish GitHub Release
+        if: github.ref_type == 'tag'
+        shell: pwsh
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh release create "$env:GITHUB_REF_NAME" dist-release/*.zip dist-release/*.sha256 `
+            --title "StoryMotion Studio ${{ steps.v.outputs.version }}" --generate-notes

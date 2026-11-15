@@ -1,0 +1,183 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\USER\Documents\WORK\story-motion\.venv\Scripts\python.exe
+rootdir: C:\Users\USER\Documents\WORK\story-motion
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 149 items
+
+tests/faults/test_faults.py::test_F12_malformed_json_and_negative_time_are_blocked_with_locations PASSED
+tests/faults/test_faults.py::test_F13_hostile_paths_and_arguments_are_inert PASSED
+tests/faults/test_faults.py::test_F13_shell_metacharacters_in_filename_render_fine PASSED
+tests/faults/test_faults.py::test_F11_modified_or_missing_source_is_flagged_not_silently_used PASSED
+tests/faults/test_faults.py::test_DATA04_corrupt_image_fails_with_actionable_error PASSED
+tests/faults/test_faults.py::test_narration_length_mismatch_is_reported PASSED
+tests/faults/test_faults.py::test_F17_missing_ffmpeg_gives_corrective_action PASSED
+tests/faults/test_faults.py::test_F14_hash_mismatch_download_is_rejected_and_removed PASSED
+tests/faults/test_faults.py::test_F07_wrong_resolution_or_duration_clip_is_rejected PASSED
+tests/faults/test_studio_crash.py::test_killing_the_worker_during_autosave_never_corrupts_the_project PASSED
+tests/faults/test_studio_crash.py::test_killing_the_worker_during_import_leaves_a_consistent_project PASSED
+tests/faults/test_studio_crash.py::test_killing_the_api_server_mid_job_is_recovered_on_restart PASSED
+tests/faults/test_studio_crash.py::test_a_second_worker_on_the_same_workspace_is_refused_and_a_crash_releases_the_lock PASSED
+tests/integration/test_audio_mix.py::test_bed_is_audible_when_narration_is_silent PASSED
+tests/integration/test_audio_mix.py::test_bed_ducks_under_speech_and_recovers PASSED
+tests/integration/test_audio_mix.py::test_loud_mix_does_not_clip PASSED
+tests/integration/test_audio_mix.py::test_no_tracks_keeps_the_original_audio_path PASSED
+tests/integration/test_audio_mix.py::test_audio_track_contract_rules PASSED
+tests/integration/test_render_pipeline.py::test_full_resolution_export_probes_as_spec PASSED
+tests/integration/test_render_pipeline.py::test_cut_lands_exactly_on_the_expected_frame PASSED
+tests/integration/test_render_pipeline.py::test_cinematic_moves_static_holds_and_no_black_borders PASSED
+tests/integration/test_render_pipeline.py::test_layered_layer_moves_between_start_and_end PASSED
+tests/integration/test_render_pipeline.py::test_generative_without_clip_falls_back_visibly_and_makes_no_provider_call PASSED
+tests/integration/test_render_pipeline.py::test_mock_provider_clip_is_incorporated_only_when_approved PASSED
+tests/integration/test_render_pipeline.py::test_render_is_bit_reproducible_on_this_machine PASSED
+tests/integration/test_render_pipeline.py::test_crossfade_and_fadeblack_keep_exact_total_frames PASSED
+tests/integration/test_render_pipeline.py::test_preview_page_states_proxy_fidelity PASSED
+tests/integration/test_render_pipeline.py::test_manifest_roundtrip_json_is_stable PASSED
+tests/integration/test_render_pipeline.py::test_existing_output_is_not_overwritten_by_default PASSED
+tests/integration/test_render_pipeline.py::test_step_timeout_kills_ffmpeg_and_publishes_nothing PASSED
+tests/integration/test_render_pipeline.py::test_layered_camera_rotation_render_is_reproducible PASSED
+tests/integration/test_render_pipeline.py::test_jonah_layered_shots_are_pixel_reproducible_before_encoding PASSED
+tests/integration/test_rendered_and_scan.py::test_rendered_clip_plays_as_is_and_trim_selects_content PASSED
+tests/integration/test_rendered_and_scan.py::test_short_clip_holds_last_frame_and_warns PASSED
+tests/integration/test_rendered_and_scan.py::test_rendered_contract_rules PASSED
+tests/integration/test_rendered_and_scan.py::test_scan_registers_assets_and_flags_realistic_mistakes PASSED
+tests/integration/test_rendered_and_scan.py::test_scan_requires_audio PASSED
+tests/integration/test_rendered_and_scan.py::test_speed_slows_the_clip_down PASSED
+tests/integration/test_rendered_and_scan.py::test_plan_builder_derives_durations_and_hashes PASSED
+tests/integration/test_rendered_and_scan.py::test_plan_line_cues_and_fit_speed PASSED
+tests/integration/test_rendered_and_scan.py::test_plan_continue_resumes_the_clip_where_the_last_shot_stopped PASSED
+tests/integration/test_rendered_and_scan.py::test_plan_transitions_finish_when_the_next_line_begins PASSED
+tests/integration/test_studio_api.py::test_only_loopback_is_allowed PASSED
+tests/integration/test_studio_api.py::test_token_is_required_and_checked PASSED
+tests/integration/test_studio_api.py::test_spoofed_host_header_is_rejected_even_with_a_valid_token PASSED
+tests/integration/test_studio_api.py::test_foreign_browser_origin_is_rejected_allowed_origin_gets_cors PASSED
+tests/integration/test_studio_api.py::test_body_limits_and_content_type ----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 62257)
+Traceback (most recent call last):
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\http\server.py", line 438, in handle
+    self.handle_one_request()
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\http\server.py", line 409, in handle_one_request
+    self.send_error(HTTPStatus.REQUEST_URI_TOO_LONG)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\http\server.py", line 491, in send_error
+    self.wfile.write(body)
+  File "C:\Users\USER\AppData\Local\Programs\Python\Python312\Lib\socketserver.py", line 845, in write
+    self._sock.sendall(b)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+----------------------------------------
+PASSED
+tests/integration/test_studio_api.py::test_unknown_routes_methods_and_traversal PASSED
+tests/integration/test_studio_api.py::test_internal_errors_do_not_leak_details_or_the_token api error RuntimeError on GET /api/projects
+PASSED
+tests/integration/test_studio_api.py::test_media_token_in_the_query_never_reaches_the_log PASSED
+tests/integration/test_studio_api.py::test_project_lifecycle_over_http PASSED
+tests/integration/test_studio_api.py::test_import_check_relink_over_http PASSED
+tests/integration/test_studio_api.py::test_import_validation_errors_are_clear PASSED
+tests/integration/test_studio_api.py::test_missing_ffmpeg_is_a_clear_503_but_health_still_answers PASSED
+tests/integration/test_studio_api.py::test_serve_prints_ready_and_exits_when_the_parent_closes_stdin PASSED
+tests/integration/test_studio_assets.py::test_every_supported_format_imports_with_metadata_and_previews PASSED
+tests/integration/test_studio_assets.py::test_exact_duplicate_is_recognised_and_not_copied_twice PASSED
+tests/integration/test_studio_assets.py::test_link_mode_does_not_copy_and_never_touches_the_original PASSED
+tests/integration/test_studio_assets.py::test_bad_files_get_actionable_errors_and_do_not_stop_the_batch PASSED
+tests/integration/test_studio_assets.py::test_video_damaged_mid_file_is_imported_with_a_visible_warning PASSED
+tests/integration/test_studio_assets.py::test_hostile_file_name_is_inert PASSED
+tests/integration/test_studio_assets.py::test_move_then_relink_by_path_and_by_folder PASSED
+tests/integration/test_studio_assets.py::test_modified_source_is_flagged_not_silently_trusted PASSED
+tests/integration/test_studio_assets.py::test_deleted_project_copy_is_restored_by_relinking PASSED
+tests/integration/test_studio_assets.py::test_cancel_before_and_during_import_leaves_no_partial_files PASSED
+tests/integration/test_studio_assets.py::test_cancel_inside_a_file_removes_its_partial_copy PASSED
+tests/integration/test_studio_assets.py::test_disk_full_or_read_only_is_reported_and_leaves_nothing_behind PASSED
+tests/integration/test_studio_assets.py::test_category_validation_and_removal_rules PASSED
+tests/integration/test_studio_assets.py::test_preview_files_are_served_only_via_database_lookup PASSED
+tests/integration/test_studio_assets.py::test_import_job_reports_progress_and_completes PASSED
+tests/integration/test_studio_assets.py::test_running_job_can_be_cancelled PASSED
+tests/integration/test_studio_assets.py::test_failing_job_records_a_readable_error_and_state_machine_is_enforced PASSED
+tests/integration/test_studio_assets.py::test_jobs_running_when_the_process_died_become_interrupted PASSED
+tests/integration/test_studio_assets.py::test_twenty_plus_assets_and_a_narration_import_and_survive_reopening IMPORT_TIMING files=24 seconds=5.8
+PASSED
+tests/unit/test_contracts.py::test_jonah_fixture_is_valid_and_in_scope PASSED
+tests/unit/test_contracts.py::test_invalid_json_reports_line_and_column PASSED
+tests/unit/test_contracts.py::test_negative_duration_has_field_path PASSED
+tests/unit/test_contracts.py::test_float_milliseconds_rejected PASSED
+tests/unit/test_contracts.py::test_gap_and_overlap_detected_with_amounts PASSED
+tests/unit/test_contracts.py::test_unknown_asset_reference PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[../secrets.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[/etc/passwd.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[C:/x/y.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[a\\b.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[http://evil/x.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[img/../../x.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[ctl\x01.png] PASSED
+tests/unit/test_contracts.py::test_hostile_asset_paths_rejected[x.exe] PASSED
+tests/unit/test_contracts.py::test_generative_requires_fallback_and_generation PASSED
+tests/unit/test_contracts.py::test_cinematic_requires_camera_and_no_black_border_scale PASSED
+tests/unit/test_contracts.py::test_secrets_or_provider_fields_cannot_enter_manifest PASSED
+tests/unit/test_contracts.py::test_shots_must_cover_narration_within_tolerance PASSED
+tests/unit/test_contracts.py::test_scene_range_must_match_shots PASSED
+tests/unit/test_contracts.py::test_unsupported_schema_major_and_duplicates PASSED
+tests/unit/test_contracts.py::test_non_16_9_rejected_and_transition_rules PASSED
+tests/unit/test_contracts.py::test_narration_must_be_audio PASSED
+tests/unit/test_fake_provider.py::test_no_network_is_ever_used PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw0-duration_ms] PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw1-resolution] PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw2-prompt] PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw3-prompt] PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw4-sources] PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw5-sources[0]] PASSED
+tests/unit/test_fake_provider.py::test_unsupported_requests_rejected_before_quote[kw6-sources] PASSED
+tests/unit/test_fake_provider.py::test_quote_uses_min_billable_and_exact_integer_money PASSED
+tests/unit/test_fake_provider.py::test_unknown_price_fails_closed[kw0] PASSED
+tests/unit/test_fake_provider.py::test_unknown_price_fails_closed[kw1] PASSED
+tests/unit/test_fake_provider.py::test_no_approval_without_explicit_confirmation PASSED
+tests/unit/test_fake_provider.py::test_submit_rejects_wrong_request_expired_quote_and_low_max PASSED
+tests/unit/test_fake_provider.py::test_same_approval_is_idempotent_new_approval_is_new_attempt PASSED
+tests/unit/test_fake_provider.py::test_lost_response_is_reconciled_without_second_charge PASSED
+tests/unit/test_fake_provider.py::test_lost_response_without_lookup_blocks_resubmission PASSED
+tests/unit/test_fake_provider.py::test_rate_limit_retries_are_bounded_and_do_not_double_charge PASSED
+tests/unit/test_fake_provider.py::test_outage_gives_up_after_bounded_retries_with_zero_charges PASSED
+tests/unit/test_fake_provider.py::test_failed_job_surfaces_error_and_keeps_the_charge_record PASSED
+tests/unit/test_fake_provider.py::test_cancel_unsupported_is_explicit PASSED
+tests/unit/test_fake_provider.py::test_capabilities_are_labelled_unverified_mock PASSED
+tests/unit/test_studio_store.py::test_create_list_reopen_rename_archive PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[] PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[   ] PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[bad2] PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[a\x00b] PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[line\nbreak] PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[5] PASSED
+tests/unit/test_studio_store.py::test_invalid_names_rejected[None] PASSED
+tests/unit/test_studio_store.py::test_hostile_names_are_plain_text_never_paths PASSED
+tests/unit/test_studio_store.py::test_duplicate_is_independent PASSED
+tests/unit/test_studio_store.py::test_delete_goes_to_trash_and_can_be_restored_or_purged PASSED
+tests/unit/test_studio_store.py::test_stale_revision_and_unknown_fields PASSED
+tests/unit/test_studio_store.py::test_crash_during_save_leaves_a_complete_old_or_new_file PASSED
+tests/unit/test_studio_store.py::test_corrupt_main_file_recovers_from_backup_and_keeps_evidence PASSED
+tests/unit/test_studio_store.py::test_both_files_corrupt_is_reported_without_touching_anything PASSED
+tests/unit/test_studio_store.py::test_one_bad_project_does_not_hide_the_others PASSED
+tests/unit/test_studio_store.py::test_migration_from_prerelease_layout_is_preserved_and_repeatable PASSED
+tests/unit/test_studio_store.py::test_newer_schema_is_refused_unchanged PASSED
+tests/unit/test_studio_store.py::test_index_is_rebuilt_from_folders PASSED
+tests/unit/test_studio_store.py::test_unwritable_workspace_gives_actionable_error PASSED
+tests/unit/test_studio_store.py::test_the_live_project_file_is_never_opened_for_writing PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[0-24-0] PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[41-24-1] PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[20-24-0] PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[21-24-1] PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[1000-24-24] PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[1000-30-30] PASSED
+tests/unit/test_timing_and_planning.py::test_ms_to_frame_integer_rounding[85606-24-2055] PASSED
+tests/unit/test_timing_and_planning.py::test_frame_edges_are_contiguous_and_within_half_frame[24] PASSED
+tests/unit/test_timing_and_planning.py::test_frame_edges_are_contiguous_and_within_half_frame[30] PASSED
+tests/unit/test_timing_and_planning.py::test_plan_without_clip_falls_back_and_never_stays_generative PASSED
+tests/unit/test_timing_and_planning.py::test_tails_only_where_next_shot_has_a_fade PASSED
+
+====================== 149 passed in 3730.99s (1:02:10) =======================
+
+real	62m5.446s
+user	0m0.015s
+sys	0m0.046s

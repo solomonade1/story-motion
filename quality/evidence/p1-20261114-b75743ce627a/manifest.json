@@ -1,0 +1,83 @@
+{
+  "buildId": "p1-20261114-b75743ce627a",
+  "buildIdMethod": "sha256 of sorted source files (workers, tests, scripts, pyproject, apps/desktop sources, lockfile, src-tauri sources); no git repository",
+  "date": "2026-11-14",
+  "phase": "1",
+  "verdict": "PARTIAL - desktop shell/installer deferred by the owner (Windows Smart App Control blocks Rust builds); G2 not claimed",
+  "environment": {
+    "os": "Windows 11 Pro 10.0.26300",
+    "cpu": "i7-12800H",
+    "ramGB": 31.6,
+    "python": "3.12.10",
+    "node": "24.12.0",
+    "ffmpeg": "9.0.2 full_build",
+    "rust": "1.100.0 (installed; no successful build)"
+  },
+  "tests": {
+    "python": "149 passed",
+    "ui": "40 passed"
+  },
+  "paidActions": "none; spend $0",
+  "files": [
+    {
+      "path": "DECISION_RECORD.md",
+      "sha256": "140b64889bba06cd846766a8dd4396cf53fbad5ec8af95f2dea0faeb137cf060"
+    },
+    {
+      "path": "GATE_CHECKLIST.md",
+      "sha256": "8d988c136753a3a2122ee2a948589fd78e4523022c60b85264dde0cefd969649"
+    },
+    {
+      "path": "PHASE_REPORT.md",
+      "sha256": "ad4d145f1f2ff34230d57d446fa777d442d45cb5eab64a6523afcbca60bca4c5"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "sha256": "5c1b440f7edde2e691f55ae6dbbee21abe5a6928ce58ec620431083b0e2dbfad"
+    },
+    {
+      "path": "crash-recovery/CRASH_RECOVERY.md",
+      "sha256": "a265b8231cc406f2130591419c678b13a2986c8278c677cb2bd5fb0b79a46190"
+    },
+    {
+      "path": "e2e/E2E_OBSERVATIONS.md",
+      "sha256": "ce1416ec62a4a336de1cdb4fb9f652b342aaebbcd781d941afe483deaf6e0e80"
+    },
+    {
+      "path": "security/SECURITY_CHECKS.md",
+      "sha256": "d77494eee4c08f365b7fbfc024a3f6ad1b867d510aa451d065c024624a5f3b1b"
+    },
+    {
+      "path": "unit-and-integration/eslint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "unit-and-integration/mypy.log",
+      "sha256": "e135b1fbc13e9616f6c4932f047bc42c8815dd18540caf5d3b4c9210b2c6c210"
+    },
+    {
+      "path": "unit-and-integration/pytest-run-A-62min-anomaly.log",
+      "sha256": "4cb8f3c49b9f2395db3c561230a19669da56565aea1b55021a6df9e804e79467"
+    },
+    {
+      "path": "unit-and-integration/pytest.log",
+      "sha256": "1ad57825dc90a22f6f34188d0e8d32d51672c498810629b3bbbed6018959563a"
+    },
+    {
+      "path": "unit-and-integration/ruff.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "unit-and-integration/ts-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "unit-and-integration/vite-build.log",
+      "sha256": "c956ab210b6dbc5e8e9829fbc3c45e4a9e67deb2b0417ee8d0a56e7dc0476ada"
+    },
+    {
+      "path": "unit-and-integration/vitest.log",
+      "sha256": "226bdca388047cd661b0e6918c1d558acaeaa422a75b3d9aba83b897bddc5a3e"
+    }
+  ]
+}

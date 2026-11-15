@@ -1,0 +1,9 @@
+54df666d195ae833b95d543eea24d3c633a6cf5c41f8793577c3ab4f622a5eaa  apps/desktop/dist/index.html
+85f95bc0d756374fbf75fcf724030fd181eb0fb409109cc8c72a8f39e46db2a5  apps/desktop/dist/assets/dist-js-DVcdMhBM.js
+68e815e4de5be8e77cc0d3018b807811ad13a31a13387c9e1501e5fccd63f07e  apps/desktop/dist/assets/index-ASbHeFWE.js
+88cf2d525d41c48940e8ec8329df25427c53da2a8c9807f032f48113e49cf6c9  apps/desktop/dist/assets/index-BO1RfK_M.css
+ed715f854afe5e6e7316a57c4d35ba4d849ca8303dfc048f7adc051b87cfcbba  docs/architecture/ADR-0008-project-storage.md
+93fe91ef268fe442babf4b44c2b7d0506e809b907cf0fe484b64c1afeb326a51  docs/architecture/ADR-0009-local-api-and-ipc-security.md
+4cbd2e8efee2e8d9c4d762ab624fdef489a19645e70f68a18234020cbca487ed  docs/architecture/ADR-0010-desktop-shell-plan.md
+12d363ffd7c902b79eb14c27f43a112b48f66d4d6d149223efd9ecd605124856  docs/QUALITY_GATES.md
+6e5363538c53a7f8ef9c1786759f8c7fb60e8d1843b138aec2dfc121000b2751  docs/PRD.md

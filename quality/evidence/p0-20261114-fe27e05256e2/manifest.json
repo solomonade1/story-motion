@@ -1,0 +1,90 @@
+{
+  "buildId": "p0-20261114-fe27e05256e2",
+  "buildIdMethod": "sha256 of sorted source files (workers, tests, scripts, pyproject, Jonah manifest); no git repository",
+  "date": "2026-11-14",
+  "phase": "0",
+  "gates": {
+    "G0": "PASS (exceptions E-1,E-2)",
+    "G1": "PASS - limited scope",
+    "mini-gate-7.1": "PASS (exception DR-001)"
+  },
+  "environment": {
+    "os": "Windows 11 Pro 10.0.26300",
+    "cpu": "i7-12800H",
+    "ramGB": 31.6,
+    "python": "3.12.10",
+    "ffmpeg": "9.0.2 full_build (Gyan.dev)"
+  },
+  "paidActions": "none; spend $0",
+  "approver": "project owner (written instruction in session, see DECISION_RECORD.md)",
+  "files": [
+    {
+      "path": "DECISION_RECORD.md",
+      "sha256": "14996bbce31fa60b677ea71139ab8348cc33238d67b7f092d9c6bb409b8d5d73"
+    },
+    {
+      "path": "GATE_CHECKLIST.md",
+      "sha256": "a830716613a953991aeaaa6dc6143569afafeb415e0bf8f9ca392b229c5a93dd"
+    },
+    {
+      "path": "PHASE_REPORT.md",
+      "sha256": "6e74330e6b9320dd88474e81705e7a4f0c09e984df62da9e13be75368ae17b87"
+    },
+    {
+      "path": "signoff.md",
+      "sha256": "fdbac7f237493912b9d74970d41f57f9bdc2af4625f3c9a675be86fd353994ee"
+    },
+    {
+      "path": "creative-reviews/CREATIVE_REVIEW.md",
+      "sha256": "6f904f84c3d9c557a41692ecd0be95dc14eddd9295ef3fa30a8a41deed6f18b0"
+    },
+    {
+      "path": "exports/SHA256SUMS.txt",
+      "sha256": "5ba65d37b51b5c0981771c5fe489ccba6210bec5655917daa578fb4fba4ec3e2"
+    },
+    {
+      "path": "exports/hezekiah_piper_joe_with_music.report.json",
+      "sha256": "4b1c381a5105118e888b93490fc256ae547b2acfd86aa771717f33fd915f51a8"
+    },
+    {
+      "path": "exports/jonah_phase0_local_only.report.json",
+      "sha256": "578ac3095251dadd1c0397184fe1b6d7520bcc0d0b31f43869b1258854ba9417"
+    },
+    {
+      "path": "exports/jonah_phase0_with_mock_clip.report.json",
+      "sha256": "cc8e878734aad1cfb815cfa41a4ac9042405c8af9b7096bf958049ba0869ea6a"
+    },
+    {
+      "path": "exports/mock_generation_log.json",
+      "sha256": "63e1b1c03e0400640ff2d852e064dc650795f09bcab4d4cff81bbe5da051939f"
+    },
+    {
+      "path": "exports/phase0_run.log",
+      "sha256": "956ca46e3b94534c03b4c8e05cf1943dc38cfb10f4574e5eb5741bdb3a002fd8"
+    },
+    {
+      "path": "exports/ffprobe/hezekiah_piper_joe_with_music.json",
+      "sha256": "957f7b966d4d5f2570b04c56a965d7bc6695341499f02671b4f79fff5aa7073a"
+    },
+    {
+      "path": "exports/ffprobe/jonah_phase0_local_only.json",
+      "sha256": "7fa2794ef1fa41c35212707b73c007ad424ea60a317b78cec24baf3f39348052"
+    },
+    {
+      "path": "exports/ffprobe/jonah_phase0_with_mock_clip.json",
+      "sha256": "cb7695f8a15e5fcae2d8363711f949609181704e98486dc0b6c66dba9ff38906"
+    },
+    {
+      "path": "unit-and-integration/mypy.log",
+      "sha256": "c923e79f0805707656f7c031b04d45e70d607ff357b623139fea93414a374d46"
+    },
+    {
+      "path": "unit-and-integration/pytest.log",
+      "sha256": "5739f5354459cf48ff5ed345b9d152447ef2c515bbf2f51d140b5e92fb430a4d"
+    },
+    {
+      "path": "unit-and-integration/ruff.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    }
+  ]
+}

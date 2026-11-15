@@ -1,0 +1,776 @@
+{
+  "$defs": {
+    "Asset": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "character",
+            "environment",
+            "prop",
+            "audio",
+            "generated_video",
+            "rendered_video",
+            "effect"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "characterId": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Characterid"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "path",
+        "sha256",
+        "provenance"
+      ],
+      "title": "Asset",
+      "type": "object"
+    },
+    "AudioTrack": {
+      "additionalProperties": false,
+      "description": "A bed under the narration (music or ambience). Ducks while the narrator speaks.",
+      "properties": {
+        "assetId": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Assetid",
+          "type": "string"
+        },
+        "role": {
+          "default": "music",
+          "enum": [
+            "music",
+            "ambience"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "gainDb": {
+          "default": -20.0,
+          "maximum": 12.0,
+          "minimum": -60.0,
+          "title": "Gaindb",
+          "type": "number"
+        },
+        "startMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Startms",
+          "type": "integer"
+        },
+        "fadeInMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fadeinms",
+          "type": "integer"
+        },
+        "fadeOutMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fadeoutms",
+          "type": "integer"
+        },
+        "loop": {
+          "default": true,
+          "title": "Loop",
+          "type": "boolean"
+        },
+        "duckDb": {
+          "default": 10.0,
+          "maximum": 30.0,
+          "minimum": 0.0,
+          "title": "Duckdb",
+          "type": "number"
+        }
+      },
+      "required": [
+        "assetId"
+      ],
+      "title": "AudioTrack",
+      "type": "object"
+    },
+    "Camera": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/CameraPose"
+        },
+        "end": {
+          "$ref": "#/$defs/CameraPose"
+        },
+        "easing": {
+          "default": "easeInOut",
+          "enum": [
+            "linear",
+            "easeIn",
+            "easeOut",
+            "easeInOut"
+          ],
+          "title": "Easing",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Camera",
+      "type": "object"
+    },
+    "CameraPose": {
+      "additionalProperties": false,
+      "properties": {
+        "scale": {
+          "maximum": 4.0,
+          "minimum": 1.0,
+          "title": "Scale",
+          "type": "number"
+        },
+        "x": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "scale",
+        "x",
+        "y"
+      ],
+      "title": "CameraPose",
+      "type": "object"
+    },
+    "Effect": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "flash",
+          "title": "Type",
+          "type": "string"
+        },
+        "atMs": {
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "minItems": 1,
+          "title": "Atms",
+          "type": "array"
+        },
+        "intensity": {
+          "default": 0.35,
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Intensity",
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "atMs"
+      ],
+      "title": "Effect",
+      "type": "object"
+    },
+    "Generation": {
+      "additionalProperties": false,
+      "description": "Provider-neutral generation info. Never holds credentials or provider-specific fields.",
+      "properties": {
+        "providerProfileId": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Providerprofileid",
+          "type": "string"
+        },
+        "clipAssetId": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clipassetid"
+        }
+      },
+      "required": [
+        "providerProfileId"
+      ],
+      "title": "Generation",
+      "type": "object"
+    },
+    "Layer": {
+      "additionalProperties": false,
+      "properties": {
+        "assetId": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Assetid",
+          "type": "string"
+        },
+        "start": {
+          "$ref": "#/$defs/LayerPose"
+        },
+        "end": {
+          "$ref": "#/$defs/LayerPose"
+        },
+        "easing": {
+          "default": "easeInOut",
+          "enum": [
+            "linear",
+            "easeIn",
+            "easeOut",
+            "easeInOut"
+          ],
+          "title": "Easing",
+          "type": "string"
+        },
+        "pivotX": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Pivotx",
+          "type": "number"
+        },
+        "pivotY": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Pivoty",
+          "type": "number"
+        },
+        "swayDeg": {
+          "default": 0.0,
+          "maximum": 45.0,
+          "minimum": 0.0,
+          "title": "Swaydeg",
+          "type": "number"
+        },
+        "swayPeriodMs": {
+          "default": 4000,
+          "exclusiveMinimum": 0,
+          "title": "Swayperiodms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "assetId",
+        "start",
+        "end"
+      ],
+      "title": "Layer",
+      "type": "object"
+    },
+    "LayerPose": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "maximum": 1.5,
+          "minimum": -0.5,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "maximum": 1.5,
+          "minimum": -0.5,
+          "title": "Y",
+          "type": "number"
+        },
+        "widthFrac": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 2.0,
+          "title": "Widthfrac",
+          "type": "number"
+        },
+        "rotateDeg": {
+          "default": 0.0,
+          "maximum": 360.0,
+          "minimum": -360.0,
+          "title": "Rotatedeg",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "widthFrac"
+      ],
+      "title": "LayerPose",
+      "type": "object"
+    },
+    "Narration": {
+      "additionalProperties": false,
+      "properties": {
+        "assetId": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Assetid",
+          "type": "string"
+        },
+        "durationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Durationms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "assetId",
+        "durationMs"
+      ],
+      "title": "Narration",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "placeholder",
+            "synthetic",
+            "creator_supplied",
+            "licensed",
+            "mock_provider_output"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "source": {
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "license": {
+          "minLength": 1,
+          "title": "License",
+          "type": "string"
+        },
+        "licenseVerified": {
+          "title": "Licenseverified",
+          "type": "boolean"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "source",
+        "license",
+        "licenseVerified"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "RenderedClip": {
+      "additionalProperties": false,
+      "description": "A clip rendered elsewhere by the creator (e.g. Blender). Used as-is, never regenerated.",
+      "properties": {
+        "assetId": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Assetid",
+          "type": "string"
+        },
+        "trimStartMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Trimstartms",
+          "type": "integer"
+        },
+        "speed": {
+          "default": 1.0,
+          "maximum": 1.5,
+          "minimum": 0.5,
+          "title": "Speed",
+          "type": "number"
+        }
+      },
+      "required": [
+        "assetId"
+      ],
+      "title": "RenderedClip",
+      "type": "object"
+    },
+    "Scene": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "narration": {
+          "$ref": "#/$defs/SceneNarration"
+        },
+        "characterIds": {
+          "items": {
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Characterids",
+          "type": "array"
+        },
+        "shotIds": {
+          "items": {
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Shotids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "narration",
+        "shotIds"
+      ],
+      "title": "Scene",
+      "type": "object"
+    },
+    "SceneNarration": {
+      "additionalProperties": false,
+      "properties": {
+        "startMs": {
+          "minimum": 0,
+          "title": "Startms",
+          "type": "integer"
+        },
+        "endMs": {
+          "exclusiveMinimum": 0,
+          "title": "Endms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "startMs",
+        "endMs"
+      ],
+      "title": "SceneNarration",
+      "type": "object"
+    },
+    "Shot": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "sceneId": {
+          "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+          "title": "Sceneid",
+          "type": "string"
+        },
+        "startMs": {
+          "minimum": 0,
+          "title": "Startms",
+          "type": "integer"
+        },
+        "durationMs": {
+          "exclusiveMinimum": 0,
+          "title": "Durationms",
+          "type": "integer"
+        },
+        "mode": {
+          "enum": [
+            "STATIC",
+            "CINEMATIC",
+            "LAYERED",
+            "GENERATIVE",
+            "RENDERED"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "fallbackMode": {
+          "anyOf": [
+            {
+              "enum": [
+                "STATIC",
+                "CINEMATIC"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fallbackmode"
+        },
+        "sourceAssetIds": {
+          "items": {
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Sourceassetids",
+          "type": "array"
+        },
+        "action": {
+          "default": "",
+          "title": "Action",
+          "type": "string"
+        },
+        "mustShow": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Mustshow",
+          "type": "array"
+        },
+        "avoid": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Avoid",
+          "type": "array"
+        },
+        "camera": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Camera"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "layers": {
+          "items": {
+            "$ref": "#/$defs/Layer"
+          },
+          "title": "Layers",
+          "type": "array"
+        },
+        "effects": {
+          "items": {
+            "$ref": "#/$defs/Effect"
+          },
+          "title": "Effects",
+          "type": "array"
+        },
+        "transition": {
+          "$ref": "#/$defs/Transition"
+        },
+        "generation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Generation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "rendered": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RenderedClip"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "approval": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ],
+          "title": "Approval",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "sceneId",
+        "startMs",
+        "durationMs",
+        "mode"
+      ],
+      "title": "Shot",
+      "type": "object"
+    },
+    "Transition": {
+      "additionalProperties": false,
+      "description": "Transition *into* this shot from the previous one.",
+      "properties": {
+        "type": {
+          "default": "cut",
+          "enum": [
+            "cut",
+            "crossfade",
+            "fadeblack"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "durationMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Durationms",
+          "type": "integer"
+        }
+      },
+      "title": "Transition",
+      "type": "object"
+    },
+    "Video": {
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "fps": {
+          "enum": [
+            24,
+            30
+          ],
+          "title": "Fps",
+          "type": "integer"
+        },
+        "fadeInMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fadeinms",
+          "type": "integer"
+        },
+        "fadeOutMs": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fadeoutms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "fps"
+      ],
+      "title": "Video",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "projectId": {
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$",
+      "title": "Projectid",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "video": {
+      "$ref": "#/$defs/Video"
+    },
+    "narration": {
+      "$ref": "#/$defs/Narration"
+    },
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/Asset"
+      },
+      "minItems": 1,
+      "title": "Assets",
+      "type": "array"
+    },
+    "scenes": {
+      "items": {
+        "$ref": "#/$defs/Scene"
+      },
+      "minItems": 1,
+      "title": "Scenes",
+      "type": "array"
+    },
+    "shots": {
+      "items": {
+        "$ref": "#/$defs/Shot"
+      },
+      "minItems": 1,
+      "title": "Shots",
+      "type": "array"
+    },
+    "audioTracks": {
+      "items": {
+        "$ref": "#/$defs/AudioTrack"
+      },
+      "title": "Audiotracks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "title",
+    "video",
+    "narration",
+    "assets",
+    "scenes",
+    "shots"
+  ],
+  "title": "Manifest",
+  "type": "object"
+}

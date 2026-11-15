@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "storymotion-media"
+version = "0.0.1"
+description = "StoryMotion Studio media worker - Phase 0 headless proof of concept"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.6", "pillow>=10"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff", "mypy"]
+audio = ["numpy"]
+
+[project.scripts]
+storymotion-media = "storymotion_media.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["workers/media"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--basetemp=.pytest_tmp"
+markers = [
+  "ffmpeg: needs a working FFmpeg/ffprobe toolchain (real media render)",
+]
+
+[tool.ruff]
+line-length = 120
+src = ["workers/media", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101", "E501"]  # long strings are fine; the formatter owns code layout
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S603", "S607", "S105", "S106", "S107"]
+"scripts/**" = ["S603", "S607", "S311", "E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["workers/media/storymotion_media"]
+plugins = ["pydantic.mypy"]

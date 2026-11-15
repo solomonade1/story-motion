@@ -1,0 +1,18 @@
+{
+  "episodeId": "",
+  "condition": "manual",
+  "frozenInputs": {
+    "scriptWords": null,
+    "approxShotCount": null,
+    "narrationMinutes": null,
+    "suppliedIllustrations": null,
+    "reusedVsNewIllustrations": "",
+    "startingStateAssumptions": "",
+    "qualityRubric": "PRD 14.2 six dimensions, 1-5"
+  },
+  "predeclaredDueAt": "",
+  "exclusions": [],
+  "evidenceOwner": "",
+  "signedBy": "",
+  "signedAt": ""
+}
