@@ -4,12 +4,13 @@
 `.github/workflows/release.yml` builds a **portable zip** on GitHub's `windows-latest`: checks (ruff, pytest minus FFmpeg tests, UI typecheck/lint/tests) -> UI build ->
 `scripts/build_release.ps1` (embeddable Python 3.12.10 + tkinter copied from the matching full install, pydantic/Pillow wheels, worker source, built UI, checksum-pinned FFmpeg 9.0.2 GPL build)
 -> smoke test using only the bundle's own Python (imports, `doctor`) -> zip + `.sha256`.
-- **Publish:** `git tag v0.1.0 && git push origin v0.1.0` creates a GitHub Release with the zip. **Dry run:** Actions -> *Release* -> *Run workflow* (zip is kept as a workflow artifact).
+- **Publish:** `git tag v0.1.1 && git push origin v0.1.1` (for example; v0.1.0 already exists) creates a GitHub Release with the zip. **Dry run:** Actions -> *Release* -> *Run workflow* (zip is kept as a workflow artifact).
 - **Local build:** `cd apps\desktop; npm ci; npm run build; cd ..\..; .\scripts\build_release.ps1 -Version 0.0.0-local` (needs the same Python version as `-PythonVersion`).
 - **Layout contract:** the code finds the UI and FFmpeg relative to `app\` (`REPO = parents[3]`), and `python\python312._pth` adds `app\workers\media` to the path. Don't move folders without updating both.
 - **Not signed, not an installer, not tested on a clean machine (OPS-08).** Users see SmartScreen warnings (documented in `packaging/USER_GUIDE.md`); Smart App Control machines may block the unsigned `ffmpeg.exe`. Signing is a paid owner decision.
 - **GPL:** the bundle ships the GPL FFmpeg; `packaging/THIRD_PARTY_NOTICES.md` carries the notice/source offer. The licence review in ADR-0007 is still open.
-- **Prerequisite:** this folder is not yet a git repository / GitHub project; create one and push before the workflow can run. **The workflow and build script have not been run yet.**
+- **Status:** **v0.1.0 is published** at https://github.com/solomonade1/story-motion/releases/latest (zip + `.sha256`). The workflow and build script have run on GitHub; the resulting zip has not been tested on a clean machine.
+- **Docs:** end-user instructions are in the root `README.md` and the pages in `docs/guide/`. Those pages are the source of `packaging/USER_GUIDE.md` (the file shipped in the zip as `USER GUIDE.md`): after editing them run `.\scripts\make_user_guide.ps1`. Release steps and the private-repository (404) note are under "For developers and maintainers" in `README.md`.
 - Piper voices (243 MB) are not bundled; narration falls back to the Windows voice.
 
 ## What you can run today (this machine, no security setting changed)
